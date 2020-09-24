@@ -7,7 +7,7 @@ export const clearInput= () => {
 };
 
 export const clearResults= () =>{
-    elements.searchList.innerHTML='';
+    elements.searchResList.innerHTML='';
 }
 
 
@@ -56,4 +56,3 @@ const renderRecipe = recipe => {
 export const renderResult = recipes => {
     recipes.forEach(renderRecipe);
 }
-

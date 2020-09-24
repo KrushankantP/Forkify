@@ -11,11 +11,13 @@
   "author": "Krushankant Patel",
   "license": "ISC",
   "devDependencies": {
+    "core-js": "^3.6.5",
+    "html-webpack-plugin": "^4.5.0",
     "webpack": "^4.2.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "html-webpack-plugin": "^4.5.0"
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "axios": "^0.20.0"
   }
-
-
 }

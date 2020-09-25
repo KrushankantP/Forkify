@@ -1,4 +1,5 @@
 import Search from "./models/Search";
+import Recipe from "./models/Recipe";
 import {elements, renderLoader, clearLoader} from "./views/base";
 import * as searchView  from "./views/searchView";
 /** Global state of the app
@@ -8,6 +9,10 @@ import * as searchView  from "./views/searchView";
  * - Liked recipes
  * */
 const state = {};
+
+/**
+ * SEARCH CONTROLLER
+ * */
 
 const controlSearch =async ()=>{
     const query = searchView.getInput()
@@ -22,7 +27,6 @@ const controlSearch =async ()=>{
         renderLoader(elements.searchRes); //spinner while loading the data
 
         //4) Search for recipes
-
         await state.search.getResults();
 
         //5) Render results on UI
@@ -44,3 +48,10 @@ elements.searchResPages.addEventListener('click', e =>{
         searchView.renderResult(state.search.result, goToPage);
     }
 })
+
+
+/**
+ * RECIPE CONTROLLER
+ * */
+const r = new Recipe(46956);
+r.getRecipe();

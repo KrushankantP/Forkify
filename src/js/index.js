@@ -1,10 +1,12 @@
 import Search from "./models/Search";
 import Recipe from "./models/Recipe";
 import List from "./models/List";
+import Likes from "./models/Likes";
 import {elements, renderLoader, clearLoader} from "./views/base";
 import * as searchView  from "./views/searchView";
 import * as recipeView  from "./views/recipeView";
 import * as listView  from "./views/listView";
+
 
 /** Global state of the app
  * - Search Object
@@ -153,8 +155,41 @@ elements.shopping.addEventListener('click', e => {
     }
 })
 
-//Handling recipe button clicks
+/**
+ * LIKE CONTROLLER
+ * */
+const controlLike =()=> {
+    if (!state.likes) state.likes = new Likes();
+    const currentID = state.recipe.id;
+    // user has NOT yet liked current recipe
+    if (!state.likes.isLike(currentID)){
+        const newLike = state.likes.addLike(
+            currentID,
+            state.recipe.title,
+            state.recipe.author,
+            state.recipe.img
+        );
 
+        //Toggle the like button
+
+        //Add like to UI list
+        console.log(state.likes);
+
+        //User HAS liked current recipe
+
+    }else{
+        //Remove like from the state
+        state.likes.deleteLike(currentID);
+
+        //Toggle the like button
+
+        //Remove like from UI list
+        console.log(state.likes);
+    }
+}
+
+
+//Handling recipe button clicks
 elements.recipe.addEventListener('click', e=>{
     if(e.target.matches('.btn-decrease, .btn-decrease *')){
 
@@ -163,15 +198,17 @@ elements.recipe.addEventListener('click', e=>{
             state.recipe.updateServings('dec');
             recipeView.updateServingsIngredients(state.recipe)
         }
-
-
-    }else if(e.target.matches('.btn-increase, .btn-increase *')){
+    } else if(e.target.matches('.btn-increase, .btn-increase *')){
 
         //Increase button is clicked
         state.recipe.updateServings('inc');
-        recipeView.updateServingsIngredients(state.recipe)
-    }else if(e.target.matches('.recipe__btn--add, .recipe__btn--add *')){
+        recipeView.updateServingsIngredients(state.recipe);
+    } else if(e.target.matches('.recipe__btn--add, .recipe__btn--add *')){
+        //Add ingredients to shopping list
         controlList();
+    } else if (e.target.matches('.recipe__love, .recipe__love *')){
+        //Like controller
+        controlLike();
     }
 })
 

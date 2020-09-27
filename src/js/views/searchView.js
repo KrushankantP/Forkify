@@ -16,7 +16,7 @@ export const highlightSelected = id =>{
     resultArr.forEach(el => {
         el.classList.remove('results__link--active');
     })
-    document.querySelector(`a[href = "#${id}"]`).classList.add('results__link--active');
+    document.querySelector(`.results__link[href = "#${id}"]`).classList.add('results__link--active');
 };
 
 
@@ -30,7 +30,7 @@ export const highlightSelected = id =>{
     acc:18 /acc +cur.length = 24 / newTitle =['Pasta', 'with', 'tomato']
  **/
 
-const limitRecipeTitle = (title, limit = 17) =>{
+export const limitRecipeTitle = (title, limit = 17) =>{
     const newTitle =[];
     if(title.length > limit){
         title.split(' ').reduce((acc, cur) => {
@@ -63,13 +63,13 @@ const renderRecipe = recipe => {
 }
 // type: 'prev' or 'next'
 const createButton =(page, type) =>`
-                <button class="btn-inline results__btn--${type}" data-goto=${type ==='prev' ? page - 1: page + 1}>
-                    <span>Page ${type ==='prev'? page -1: page + 1 }</span>
-                    <svg class="search__icon">
-                        <use href="img/icons.svg#icon-triangle-${type ==='prev'? 'left': 'right'}"></use>
-                    </svg>
-               
-                </button>          
+        <button class="btn-inline results__btn--${type}" data-goto=${type ==='prev' ? page - 1: page + 1}>
+            <span>Page ${type ==='prev'? page -1: page + 1 }</span>
+            <svg class="search__icon">
+                <use href="img/icons.svg#icon-triangle-${type ==='prev'? 'left': 'right'}"></use>
+            </svg>
+       
+        </button>          
 `;
 
 

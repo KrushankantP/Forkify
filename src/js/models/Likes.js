@@ -14,7 +14,7 @@ export default class Likes{
         this.likes.splice(index, 1);
     }
 
-    isLike(id){
+    isLiked(id){
         return this.likes.findIndex(el => el.id === id) !== -1;
     }
     getNumLikes(){

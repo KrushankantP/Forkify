@@ -15,8 +15,8 @@ import * as likesView  from "./views/likesView";
  * - Shopping list object
  * - Liked recipes
  * */
-let state = {};
-window.state = state;
+const state = {};
+
 /**
  * SEARCH CONTROLLER
  * */
@@ -80,7 +80,6 @@ elements.searchResPages.addEventListener('click', e =>{
 const controlRecipe = async ()=>{
     //Get ID from Url
     const id = window.location.hash.replace('#','');
-    console.log(id);
 
         if(id){
             // Prepare UI for changes
@@ -164,9 +163,6 @@ elements.shopping.addEventListener('click', e => {
  * LIKE CONTROLLER
  * */
 
-
-
-
 const controlLike =()=> {
     if (!state.likes) state.likes = new Likes();
     const currentID = state.recipe.id;
@@ -178,7 +174,6 @@ const controlLike =()=> {
             state.recipe.author,
             state.recipe.img
         );
-
         //Toggle the like button
         likesView.toggleLikeBtn(true);
 
@@ -233,6 +228,4 @@ elements.recipe.addEventListener('click', e=>{
         //Like controller
         controlLike();
     }
-})
-
-window.l = new List();
+});
